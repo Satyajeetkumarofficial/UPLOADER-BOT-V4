@@ -110,7 +110,7 @@ async def add_caption_help(bot, update):
     )
 
 
-@Client.on_callback_query(filters.regex('^cancel_download\+'))
+@Client.on_callback_query(filters.regex('^cancel_download'))
 async def cancel_cb(c, m):
     await m.answer()
     await m.message.edit(text="Trying to Cancel")

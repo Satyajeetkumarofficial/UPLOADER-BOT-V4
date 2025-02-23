@@ -30,13 +30,13 @@ Usᴇ ʜᴇʟᴘ ʙᴜᴛᴛᴏɴ ᴛᴏ ᴋɴᴏᴡ ʜᴏᴡ ᴛᴏ ᴜsᴇ ᴍ
     
     ABOUT_TEXT ="""
 ╭───────────⍟
-├📛 **Mʏ Nᴀᴍᴇ** : ᴜʀʟ ᴜᴘʟᴏᴀᴅᴇʀ ᴘʀᴏ ʙᴏᴛ
+├📛 **Mʏ Nᴀᴍᴇ** : ᴜʀʟ ᴜᴘʟᴏᴀᴅᴇʀ ᴘʀᴏ
 ├📢 **Fʀᴀᴍᴇᴡᴏʀᴋ** : <a href=https://docs.pyrogram.org/>Pʏʀᴏꜰᴏʀᴋ 2.3.58</a>
 ├💮 **Lᴀɴɢᴜᴀɢᴇ** : <a href=https://www.python.org>Pʏᴛʜᴏɴ 3.13.2</a>
 ├💾 **Dᴀᴛᴀʙᴀsᴇ** : <a href=https://cloud.mongodb.com>MᴏɴɢᴏDB</a>
-├🚨 **Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ** : <a href=https://t.me/ProBotsDiscussionsGroup>sᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ</a>
+├🚨 **Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ** : <a href=https://t.me/ProBotsDiscussionsGroup>ᴊᴏɪɴ ɴᴏᴡ</a>
 ├🥏 **Cʜᴀɴɴᴇʟ** : <a href=https://t.me/ProBotsUpdate>ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ</a>
-├👨‍💻 **Cʀᴇᴀᴛᴇʀ** :  @SatyajeetKumarOfficial
+├👨‍💻 **Cʀᴇᴀᴛᴇʀ** :  <a href=https://t.me/satyajeetkumarofficial>sᴀᴛʏᴀᴊᴇᴇᴛ</a>
 ╰───────────────⍟
 """
 

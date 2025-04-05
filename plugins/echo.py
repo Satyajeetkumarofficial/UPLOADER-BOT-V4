@@ -116,7 +116,7 @@ async def echo(bot, update):
                 o = entity.offset
                 l = entity.length
                 url = url[o:o + l]
-    if Config.HTTP_PROXY != "":
+        if Config.HTTP_PROXY != "":
         command_to_exec = [
             "yt-dlp",
             "--no-warnings",
@@ -125,7 +125,7 @@ async def echo(bot, update):
             "-j",
             url,
             "--proxy", Config.HTTP_PROXY,
-          "—cookies", cookie
+          "--cookies", cookies
         ]
     else:
         command_to_exec = [
@@ -137,7 +137,7 @@ async def echo(bot, update):
             url,
             "--geo-bypass-country",
             "IN",
-          "—cookies", cookie
+          "--cookies", cookies
 
         ]
     if youtube_dl_username is not None:

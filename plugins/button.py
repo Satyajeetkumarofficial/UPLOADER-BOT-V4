@@ -74,50 +74,31 @@ async def youtube_dl_call_back(bot, update):
             elif entity.type == "url":
                 o = entity.offset
                 l = entity.length
-                youtube_dl_url = youtube_dl_url[o:o + l]
-
-    await update.message.edit_caption(
-        caption=Translation.DOWNLOAD_START.format(custom_file_name)
-    )
-    
-    description = Translation.CUSTOM_CAPTION_UL_FILE
-    if "fulltitle" in response_json:
-        description = response_json["fulltitle"][0:1021]
-    
-    tmp_directory_for_each_user = os.path.join(Config.DOWNLOAD_LOCATION, f"{update.from_user.id}{random1}")
-    os.makedirs(tmp_directory_for_each_user, exist_ok=True)
-    download_directory = os.path.join(tmp_directory_for_each_user, custom_file_name)
-    
-    command_to_exec = [
-        "yt-dlp",
-        "-c",
-        "--max-filesize", str(Config.TG_MAX_FILE_SIZE),
-        "--embed-subs",
-        "-f", f"{youtube_dl_format}bestvideo+bestaudio/best",
-        "--hls-prefer-ffmpeg",
-        "--user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
-        youtube_dl_url,
-        "-o", download_directory,
-      "--cookies", cookies
-    ]
-    
-    if tg_send_type == "audio":
+                youtube_dl_url = youtube_dl_url[o:o + l]              
+          if Config.HTTP_PROXY != "":
         command_to_exec = [
             "yt-dlp",
-            "-c",
-            "--max-filesize", str(Config.TG_MAX_FILE_SIZE),
-            "--bidi-workaround",
-            "--extract-audio",
-            "--audio-format", youtube_dl_ext,
-            "--audio-quality", youtube_dl_format,
-            "--user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
-            youtube_dl_url,
-            "-o", download_directory,
+            "--no-warnings",
+            "--allow-dynamic-mpd",
+            "--no-check-certificate",
+            "-j",
+            url,
+            "--proxy", Config.HTTP_PROXY,
           "--cookies", cookies
         ]
-    
-    if Config.HTTP_PROXY:
-        command_to_exec.extend(["--proxy", Config.HTTP_PROXY])
+    else:
+        command_to_exec = [
+            "yt-dlp",
+            "--no-warnings",
+            "--allow-dynamic-mpd",
+            "--no-check-certificate",
+            "-j",
+            url,
+            "--geo-bypass-country",
+            "IN",
+          "--cookies", cookies
+
+]
     if youtube_dl_username:
         command_to_exec.extend(["--username", youtube_dl_username])
     if youtube_dl_password:

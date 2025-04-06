@@ -17,6 +17,8 @@ from plugins.database.database import db
 from PIL import Image
 from plugins.functions.ran_text import random_char
 
+cookies = "cookies.txt"
+
 # Set up logging
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')

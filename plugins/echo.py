@@ -121,7 +121,7 @@ async def echo(bot, update):
             "yt-dlp",
             "--no-warnings",
             "--allow-dynamic-mpd",
-            "cookiefile": "cookies.txt",
+            "--cookies", cookiefile,
             "--no-check-certificate",
             "-j",
             url,
@@ -132,7 +132,7 @@ async def echo(bot, update):
             "yt-dlp",
             "--no-warnings",
             "--allow-dynamic-mpd",
-            "cookiefile": "cookies.txt",
+            "--cookies", cookiefile,
             "--no-check-certificate",
             "-j",
             url,
@@ -303,4 +303,5 @@ async def echo(bot, update):
             reply_markup=reply_markup,
             disable_web_page_preview=True,
             reply_to_message_id=update.id
-        )
+              )
+      

@@ -29,7 +29,7 @@ from plugins.functions.ran_text import random_char
 from plugins.database.database import db
 from plugins.database.add import AddUser
 from pyrogram.types import Thumbnail
-cookies_file = 'cookies.txt'
+cookiefile = 'cookies.txt'
 
 
 
@@ -121,7 +121,7 @@ async def echo(bot, update):
             "yt-dlp",
             "--no-warnings",
             "--allow-dynamic-mpd",
-            "--cookies", cookies_file,
+            "cookiefile": "cookies.txt",
             "--no-check-certificate",
             "-j",
             url,
@@ -132,7 +132,7 @@ async def echo(bot, update):
             "yt-dlp",
             "--no-warnings",
             "--allow-dynamic-mpd",
-            "--cookies", cookies_file,
+            "cookiefile": "cookies.txt",
             "--no-check-certificate",
             "-j",
             url,

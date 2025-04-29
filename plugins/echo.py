@@ -157,21 +157,77 @@ async def echo(bot, update):
     process = await asyncio.create_subprocess_exec(
         *command_to_exec,
         stdout=asyncio.subprocess.PIPE,
-        stderr=asyncio.subprocess.PIPE,
+@Client.on_message(filters.private & filters.regex(pattern=".*http.*"))
+async def echo(bot, update):
+    # ... [initial checks and URL parsing remains unchanged] ...
+
+    if Config.HTTP_PROXY != "":
+        command_to_exec = [
+            "yt-dlp",
+            "--no-warnings",
+            "--allow-dynamic-mpd",
+            "--cookies", cookiefile,
+            "--no-check-certificate",
+            "-j",
+            url,
+            "--proxy", Config.HTTP_PROXY
+        ]
+    else:
+        command_to_exec = [
+            "yt-dlp",
+            "--no-warnings",
+            "--allow-dynamic-mpd",
+            "--cookies", cookiefile,
+            "--no-check-certificate",
+            "-j",
+            url,
+            "--geo-bypass-country",
+            "IN"
+        ]
+
+    if youtube_dl_username is not None:
+        command_to_exec.append("--username")
+        command_to_exec.append(youtube_dl_username)
+    if youtube_dl_password is not None:
+        command_to_exec.append("--password")
+        command_to_exec.append(youtube_dl_password)
+
+    logger.info(command_to_exec)
+    chk = await bot.send_message(
+        chat_id=update.chat.id,
+        text='ᵐᵃʀʜʜᵒʀʀɪɴɢ ʏᴏᴜʀ ʟɪɴᴋ ⌛',
+        disable_web_page_preview=True,
+        reply_to_message_id=update.id,
+        parse_mode=enums.ParseMode.HTML
     )
-    # Wait for the subprocess to finish
-    stdout, stderr = await process.communicate()
-    e_response = stderr.decode().strip()
-    logger.info(e_response)
-    t_response = stdout.decode().strip()
+
+    try:
+        process = await asyncio.create_subprocess_exec(
+            *command_to_exec,
+            stdout=asyncio.subprocess.PIPE,
+            stderr=asyncio.subprocess.PIPE,
+        )
+        stdout, stderr = await process.communicate()
+        t_response = stdout.decode().strip()
+        e_response = stderr.decode().strip()
+        logger.info(e_response)
+    except Exception as e:
+        await chk.delete()
+        await bot.send_message(
+            chat_id=update.chat.id,
+            text=f"🚨 Error while executing yt-dlp:\n<code>{str(e)}</code>",
+            parse_mode=enums.ParseMode.HTML
+        )
+        return
+
     if e_response and "nonnumeric port" not in e_response:
-        # logger.warn("Status : FAIL", exc.returncode, exc.output)
-        error_message = e_response.replace("please report this issue on https://yt-dl.org/bug . Make sure you are using the latest version; see  https://yt-dl.org/update  on how to update. Be sure to call youtube-dl with the --verbose flag and include its complete output.", "")
+        error_message = e_response.replace(
+            "please report this issue on https://yt-dl.org/bug . Make sure you are using the latest version; see  https://yt-dl.org/update  on how to update. Be sure to call youtube-dl with the --verbose flag and include its complete output.",
+            ""
+        )
         if "This video is only available for registered users." in error_message:
             error_message += Translation.SET_CUSTOM_USERNAME_PASSWORD
         await chk.delete()
-        
-        time.sleep(10)
         await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.NO_VOID_FORMAT_FOUND.format(str(error_message)),
@@ -179,7 +235,7 @@ async def echo(bot, update):
             disable_web_page_preview=True
         )
         return False
-    if t_response:
+      if t_response:
         x_reponse = t_response
         if "\n" in x_reponse:
             x_reponse, _ = x_reponse.split("\n")

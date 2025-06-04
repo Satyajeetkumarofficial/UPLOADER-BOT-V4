@@ -110,7 +110,7 @@ async def add_caption_help(bot, update):
     )
 
 
-@Client.on_callback_query(filters.regex(r'^cancel_download\+'))
+@Client.on_callback_query(filters.regex('^cancel_download\+'))
 async def cancel_cb(c, m):
     await m.answer()
     await m.message.edit(text="Trying to Cancel")
@@ -147,4 +147,5 @@ async def warn(c, m):
                  await m.reply_text("User Not Notfied Sucessfully 😔")
     else:
         await m.reply_text(text="You Are Not Admin 😡", quote=True)
+
 

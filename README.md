@@ -8,11 +8,11 @@
 [![GitHub stars](https://img.shields.io/github/stars/LISA-KOREA/UPLOADER-BOT-V4?&style=flat-square&logo=github)](https://github.com/LISA-KOREA/UPLOADER-BOT-V4/stargazers)
 
 #
-<a href="https://github.com/LISA-KOREA"><img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=47000&size=40&pause=1000&color=063EFF&random=false&width=750&lines=WELCOME+TO+URL+UPLOADER+BOT+V4+%F0%9F%9A%80;MADE+BY+%40NT_BOT_CHANNEL+;FOLLOW+ME+%E2%9D%A4%EF%B8%8F" alt="Typing SVG" /></a>
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=F70000&multiline=true&width=460&height=60&lines=%F0%9F%92%AB+Thanks+for+supporting+this+project!+Every+%E2%AD%90+and+fork+helps+keep+it+alive.+%F0%9F%99%8C)](https://git.io/typing-svg)
 #
 
 #
-<a href="https://github.com/LISA-KOREA"><img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=47000&size=40&pause=1000&color=FF0000&random=false&width=500&height=55&lines=GIVE+ME+A+STAR" alt="Typing SVG" /></a>
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&pause=1000&color=F70000&multiline=true&width=460&height=60&lines=GIVE+ME+A+STAR+%E2%AD%90%EF%B8%8F+)](https://git.io/typing-svg)
 
 #
 
@@ -23,34 +23,36 @@
 # Donation
 <b><details><summary>Click To Open Donation detelis</summary>
 
-We sincerely appreciate your interest in supporting our bot. Your generous contribution helps us maintain and improve the bot, ensuring it continues to provide value to everyone. Whether it’s ₹10, ₹20, ₹50, ₹100, or $2, $5, $10—every bit counts and brings us closer to our goals!
+## Support This Project
 
-🔘 Payment Methods:
+Maintaining and improving this project takes time and resources. If you find this repository helpful or use it in your own projects, consider supporting its development. Your contributions—no matter how small—help keep the project alive and evolving.
 
-- GPay / Paytm / PhonePe / PayPal / UPI / Bitcoin
-- Credit/Debit Cards: Accepted via PayPal
-- Cryptocurrencies: We also accept Bitcoin and Tron (TRC20) for secure and anonymous donations.
+### Payment Methods
 
-📱 Payment Details:
+- **UPI / GPay / Paytm / PhonePe**
+- **PayPal** (International)
+- **Credit/Debit Cards** (via PayPal)
+- **Cryptocurrency**: Bitcoin, Tron (TRC20)
+- **Payeer**
 
-- UPI ID: `jobinjustin2002-1@okaxis`
-- Tron (TRC20): `THPYzzchV2fssaw5RE4TxL8NxJpfctw46J`
-- Payeer: `P1113797003`
-- Bitcoin: `1DPtf1xkq7aBriCBwDHNydSfzQT2PccFmj`
-- PayPlal: [Click to pay](https://www.paypal.me/lisajobin)
+### Payment Details
 
-💬 Why Donate?
+- **UPI ID**: `jobinjustin2002-1@okaxis`  
+- **Bitcoin**: `1DPtf1xkq7aBriCBwDHNydSfzQT2PccFmj`  
+- **Tron (TRC20)**: `THPYzzchV2fssaw5RE4TxL8NxJpfctw46J`  
+- **Payeer**: `P1113797003`  
+- **PayPal**: [Click to Pay](https://www.paypal.me/lisajobin)
 
-- Sustainability: Your donations help cover server costs, maintenance, and development of new features.
-- Growth: Contributions allow us to scale up, offering better performance and more robust services.
-- Community Support: We aim to keep this bot free for everyone. Your support makes that possible.
+### Why Donate?
 
-🎉 Special Thanks:
+- To support ongoing development and new features
+- To help cover infrastructure and hosting costs
+- To keep the project open-source and free for everyone
 
-As a token of our gratitude, we’ll mention our top supporters in the community (optional). Your kindness doesn’t go unnoticed!
+### Contact
 
-👨‍💻 Developer Contact:  
-For any questions, suggestions, or assistance, please contact [@JOBIN_JUSTIN](https://t.me/JOBIN_JUSTIN). We're here to help and appreciate your feedback!
+If you have any questions or would like to sponsor this project in another way, feel free to reach out:  
+**[@JOBIN_JUSTIN](https://t.me/JOBIN_JUSTIN)** on Telegram.
 </b>
 </details>
 

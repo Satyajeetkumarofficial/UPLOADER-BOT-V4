@@ -44,6 +44,8 @@ logger = logging.getLogger(__name__)
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 async def youtube_dl_call_back(bot, update):
+    if not await check_user_limit(update):
+        return
     cb_data = update.data
     tg_send_type, youtube_dl_format, youtube_dl_ext, ranom = cb_data.split("|")
     random1 = random_char(5)

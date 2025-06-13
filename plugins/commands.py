@@ -145,8 +145,10 @@ async def add_sudo_user(client, message):
         await message.reply_text(f"✅ User `{user_id}` को SUDO में जोड़ दिया गया।")
     except Exception as e:
         await message.reply_text("❌ Error: सही User ID दें।")
-        
-        @Client.on_message(filters.command("removesudo") & filters.user(Config.OWNER_ID))
+
+
+
+@Client.on_message(filters.command("removesudo") & filters.user(Config.OWNER_ID))
 async def remove_sudo_user(client, message):
     if len(message.command) < 2:
         return await message.reply_text("👤 कृपया User ID दें।\nउदाहरण: `/removesudo 123456789`")
@@ -158,7 +160,8 @@ async def remove_sudo_user(client, message):
     except Exception as e:
         await message.reply_text("❌ Error: सही User ID दें।")
         
-        @Client.on_message(filters.command("warn"))
+
+@Client.on_message(filters.command("warn"))
 async def warn(c, m):
     if m.from_user.id in Config.OWNER_II:
         if len(m.command) >= 3:

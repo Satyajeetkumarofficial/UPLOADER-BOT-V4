@@ -63,7 +63,7 @@ async def check_user_limit(update):
                     pass
 
             try:
-                await msg.edit_text("✅ अब आप अगला लिंक भेज सकते हैं।")
+                await update.message.reply_text("✅ अब आप अगला लिंक भेज सकते हैं।")
             except:
                 pass
 

@@ -17,75 +17,13 @@ from plugins.database.database import db
 from PIL import Image
 from plugins.functions.ran_text import random_char
 cookies_file = 'cookies.txt'
-# 🔐 यूजर लॉक और रीयल-टाइम वेट सिस्टम
-from plugins.config import Config  # अगर पहले से है तो दोबारा मत जोड़ें
-
-# 👇 User lock dictionary
-user_locks = {}
-user_lock_timers = {}
-
-async def check_user_limit(update):
-    user_id = update.from_user.id
-
-    now = datetime.utcnow()
-
-    if user_id == Config.OWNER_ID:
-        return True
-
-    if user_id in Config.SUDO_USERS:
-        expiry = Config.SUDO_USERS[user_id]
-        if expiry > now:
-            return True  # ✅ Sudo valid hai
-        else:
-            # ❌ Expired: sudo user hatao
-            del Config.SUDO_USERS[user_id]
-
-    if user_locks.get(user_id, False):
-        wait_until = user_lock_timers.get(user_id, now)
-        remaining = (wait_until - now).total_seconds()
-
-        if remaining > 0:
-            msg = await update.message.reply_text(
-                f"⏳ कृपया प्रतीक्षा करें...\n⌛ बचा समय: **{int(remaining)} सेकंड**"
-            )
-
-            while remaining > 0:
-                await asyncio.sleep(5)
-                now = datetime.utcnow()
-                remaining = (wait_until - now).total_seconds()
-                if remaining <= 0:
-                    break
-                try:
-                    await msg.edit_text(
-                        f"⏳ कृपया प्रतीक्षा करें...\n⌛ बचा समय: **{int(remaining)} सेकंड**"
-                    )
-                except:
-                    pass
-
-            try:
-                await update.message.reply_text("✅ अब आप अगला लिंक भेज सकते हैं।")
-            except:
-                pass
-
-            return False
-
-    # ✅ Lock set karo
-    user_locks[user_id] = True
-    user_lock_timers[user_id] = now + timedelta(seconds=180)
-    return True
-  # 🔓 जब काम पूरा हो जाए तो लॉक हटाएं
-def release_user_lock(user_id):
-    user_locks[user_id] = False
-    user_lock_timers.pop(user_id, None)
-  # Set up logging
+# Set up logging
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 async def youtube_dl_call_back(bot, update):
-    if not await check_user_limit(update):
-        return
     cb_data = update.data
     tg_send_type, youtube_dl_format, youtube_dl_ext, ranom = cb_data.split("|")
     random1 = random_char(5)
@@ -325,9 +263,6 @@ async def youtube_dl_call_back(bot, update):
             await update.message.edit_caption(
                 caption=Translation.AFTER_SUCCESSFUL_UPLOAD_MSG_WITH_TS.format(time_taken_for_download, time_taken_for_upload)
             )
-            release_user_lock(update.from_user.id)
             
             logger.info(f"✅ Downloaded in: {time_taken_for_download} seconds")
             logger.info(f"✅ Uploaded in: {time_taken_for_upload} seconds")
-
-  

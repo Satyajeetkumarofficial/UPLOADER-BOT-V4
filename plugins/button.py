@@ -40,8 +40,6 @@ async def check_user_limit(update):
             # ❌ Expired: sudo user hatao
             del Config.SUDO_USERS[user_id]
 
-    now = datetime.utcnow()
-
     if user_locks.get(user_id, False):
         wait_until = user_lock_timers.get(user_id, now)
         remaining = (wait_until - now).total_seconds()

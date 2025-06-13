@@ -311,7 +311,6 @@ async def youtube_dl_call_back(bot, update):
 
 if update.from_user.id not in Config.SUDO_USERS and update.from_user.id != Config.OWNER_ID:
     cooldown_users[update.from_user.id] = datetime.utcnow() + timedelta(minutes=3)
-            release_user_lock(update.from_user.id)
             
             logger.info(f"✅ Downloaded in: {time_taken_for_download} seconds")
             logger.info(f"✅ Uploaded in: {time_taken_for_upload} seconds")

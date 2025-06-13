@@ -17,7 +17,27 @@ from plugins.database.database import db
 from PIL import Image
 from plugins.functions.ran_text import random_char
 cookies_file = 'cookies.txt'
-# Set up logging
+# ✅ User delay aur lock system
+from plugins.config import Config
+
+user_locks = {}
+
+async def check_user_limit(update):
+    user_id = update.from_user.id
+    if user_id in Config.AUTH_USERS:
+        return True  # Admins ke liye delay nahi
+
+    if user_locks.get(user_id):
+        await update.message.reply_text("⏳ कृपया इंतजार करें, पिछला काम अभी पूरा नहीं हुआ है।")
+        return False
+
+    user_locks[user_id] = True
+    await asyncio.sleep(10)  # Normal users ke liye 10 second delay
+    return True
+
+def release_user_lock(user_id):
+    user_locks[user_id] = False
+  # Set up logging
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)

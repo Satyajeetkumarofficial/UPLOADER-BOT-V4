@@ -159,6 +159,18 @@ async def remove_sudo_user(client, message):
         await message.reply_text(f"❎ User `{user_id}` को SUDO से हटा दिया गया।")
     except Exception as e:
         await message.reply_text("❌ Error: सही User ID दें।")
+
+@Client.on_message(filters.command("sudolist") & filters.user(Config.OWNER_ID))
+async def list_sudo_users(client, message):
+    if not Config.SUDO_USERS:
+        return await message.reply_text("📭 कोई भी SUDO user नहीं है।")
+
+    sudo_list = ""
+    for uid, expiry in Config.SUDO_USERS.items():
+        time_left = expiry - datetime.utcnow()
+        sudo_list += f"• `{uid}` ⏳ वैध: {expiry.strftime('%Y-%m-%d')} ({time_left.days} दिन बाकी)\n"
+
+    await message.reply_text(f"👑 SUDO USERS:\n\n{sudo_list}")
         
 
 @Client.on_message(filters.command("warn"))

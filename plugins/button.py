@@ -71,7 +71,7 @@ async def check_user_limit(update):
 
     # ✅ Lock set karo
     user_locks[user_id] = True
-    user_lock_timers[user_id] = now + timedelta(seconds=300)
+    user_lock_timers[user_id] = now + timedelta(seconds=180)
     return True
   # 🔓 जब काम पूरा हो जाए तो लॉक हटाएं
 def release_user_lock(user_id):

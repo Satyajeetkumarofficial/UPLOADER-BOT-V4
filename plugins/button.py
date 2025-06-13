@@ -285,6 +285,7 @@ async def youtube_dl_call_back(bot, update):
             await update.message.edit_caption(
                 caption=Translation.AFTER_SUCCESSFUL_UPLOAD_MSG_WITH_TS.format(time_taken_for_download, time_taken_for_upload)
             )
+            release_user_lock(update.from_user.id)
             
             logger.info(f"✅ Downloaded in: {time_taken_for_download} seconds")
             logger.info(f"✅ Uploaded in: {time_taken_for_upload} seconds")

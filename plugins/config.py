@@ -43,8 +43,8 @@ class Config(object):
     BOT_USERNAME = os.environ.get("BOT_USERNAME", "")
     ADL_BOT_RQ = {}
 
-    # plugins/config.py ke andar
-SUDO_USERS = set()  # initially empty
+# plugins/config.py ke andar
+    SUDO_USERS = set()  # initially empty
 
 # Set False off else True
     TRUE_OR_FALSE = os.environ.get("TRUE_OR_FALSE", "").lower() == "true"

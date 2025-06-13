@@ -24,7 +24,7 @@ user_locks = {}
 
 async def check_user_limit(update):
     user_id = update.from_user.id
-    if user_id in Config.AUTH_USERS:
+    if user_id in Config.OWNER_ID:
         return True  # Admins ke liye delay nahi
 
     if user_locks.get(user_id):

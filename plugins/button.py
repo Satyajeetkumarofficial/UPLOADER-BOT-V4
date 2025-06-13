@@ -26,7 +26,6 @@ user_lock_timers = {}
 
 async def check_user_limit(update):
     user_id = update.from_user.id
-    from datetime import datetime
 
     now = datetime.utcnow()
 

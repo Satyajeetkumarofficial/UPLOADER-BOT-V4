@@ -40,10 +40,6 @@ async def check_user_limit(update):
             # ❌ Expired: sudo user hatao
             del Config.SUDO_USERS[user_id]
 
-    # ✅ Owner या Sudo User को allow करो बिना wait
-    if user_id == Config.OWNER_ID or user_id in Config.SUDO_USERS:
-        return True
-
     now = datetime.utcnow()
 
     if user_locks.get(user_id, False):

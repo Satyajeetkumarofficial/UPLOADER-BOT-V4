@@ -18,7 +18,6 @@ from PIL import Image
 from plugins.functions.ran_text import random_char
 cookies_file = 'cookies.txt'
 # 🔐 यूजर लॉक और रीयल-टाइम वेट सिस्टम
-from datetime import datetime, timedelta
 from plugins.config import Config  # अगर पहले से है तो दोबारा मत जोड़ें
 
 # 👇 User lock dictionary

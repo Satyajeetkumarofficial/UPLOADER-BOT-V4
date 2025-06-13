@@ -17,35 +17,13 @@ from plugins.database.database import db
 from PIL import Image
 from plugins.functions.ran_text import random_char
 cookies_file = 'cookies.txt'
-# ✅ User delay aur lock system
-from plugins.config import Config
-
-user_locks = {}
-
-async def check_user_limit(update):
-    user_id = update.from_user.id
-    if user_id in Config.OWNER_ID:
-        return True  # Admins ke liye delay nahi
-
-    if user_locks.get(user_id):
-        await update.message.reply_text("⏳ कृपया इंतजार करें, पिछला काम अभी पूरा नहीं हुआ है।")
-        return False
-
-    user_locks[user_id] = True
-    await asyncio.sleep(30)  # Normal users ke liye 10 second delay
-    return True
-
-def release_user_lock(user_id):
-    user_locks[user_id] = False
-  # Set up logging
+# Set up logging
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 async def youtube_dl_call_back(bot, update):
-    if not await check_user_limit(update):
-        return
     cb_data = update.data
     tg_send_type, youtube_dl_format, youtube_dl_ext, ranom = cb_data.split("|")
     random1 = random_char(5)
@@ -285,7 +263,7 @@ async def youtube_dl_call_back(bot, update):
             await update.message.edit_caption(
                 caption=Translation.AFTER_SUCCESSFUL_UPLOAD_MSG_WITH_TS.format(time_taken_for_download, time_taken_for_upload)
             )
-            release_user_lock(update.from_user.id)
             
             logger.info(f"✅ Downloaded in: {time_taken_for_download} seconds")
             logger.info(f"✅ Uploaded in: {time_taken_for_upload} seconds")
+        

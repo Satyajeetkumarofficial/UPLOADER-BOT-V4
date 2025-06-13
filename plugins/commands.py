@@ -160,7 +160,7 @@ async def add_sudo_user(client, message):
             time_input = message.command[2]  # Example: 1d / 1m / 1y
             expiry = parse_time(time_input)
         else:
-            expiry = parse_time("1y")  # default 1 year
+            expiry = parse_time("1d")  # default 1 year
 
         Config.SUDO_USERS[user_id] = expiry
         await message.reply_text(f"✅ User `{user_id}` को SUDO में जोड़ा गया है, समाप्ति: {expiry.strftime('%Y-%m-%d %H:%M:%S')} UTC")

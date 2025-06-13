@@ -307,6 +307,10 @@ async def youtube_dl_call_back(bot, update):
             await update.message.edit_caption(
                 caption=Translation.AFTER_SUCCESSFUL_UPLOAD_MSG_WITH_TS.format(time_taken_for_download, time_taken_for_upload)
             )
+            uploading_users.pop(update.from_user.id, None)
+
+if update.from_user.id not in Config.SUDO_USERS and update.from_user.id != Config.OWNER_ID:
+    cooldown_users[update.from_user.id] = datetime.utcnow() + timedelta(minutes=3)
             release_user_lock(update.from_user.id)
             
             logger.info(f"✅ Downloaded in: {time_taken_for_download} seconds")

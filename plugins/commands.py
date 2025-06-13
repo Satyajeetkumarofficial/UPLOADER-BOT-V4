@@ -175,10 +175,12 @@ async def remove_sudo_user(client, message):
     
     try:
         user_id = int(message.command[1])
-        Config.SUDO_USERS.discard(user_id)
+        del Config.SUDO_USERS[user_id]
         await message.reply_text(f"❎ User `{user_id}` को SUDO से हटा दिया गया।")
+    except KeyError:
+        await message.reply_text("❌ यह User पहले से SUDO में नहीं है।")
     except Exception as e:
-        await message.reply_text("❌ Error: सही User ID दें।")
+        await message.reply_text(f"❌ Error: {e}")
 
 @Client.on_message(filters.command("sudolist") & filters.user(Config.OWNER_ID))
 async def list_sudo_users(client, message):

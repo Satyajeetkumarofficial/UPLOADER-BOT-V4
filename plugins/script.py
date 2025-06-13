@@ -137,4 +137,4 @@ Usᴇ ʜᴇʟᴘ ʙᴜᴛᴛᴏɴ ᴛᴏ ᴋɴᴏᴡ ʜᴏᴡ ᴛᴏ ᴜsᴇ ᴍ
     FF_MPEG_RO_BOT_AD_VER_TISE_MENT = "Join : @ProBotUpdate \n For the list of Telegram bots. "
     ADD_CAPTION_HELP = """Select an uploaded file/video or forward me <b>Any Telegram File</b> and just write the text you want to be on the file <b>as a reply to the file</b> and the text you wrote will be attached as the caption! 🤩
     
-Example: <a href='https://te.legra.ph/file/ecf5297246c5fb574d1a0.jpg'>See This!</a> 👇"""
+Example: <a href='https://i.ibb.co/q3s2xhCb/Screenshot-20250613-182742.jpg'>See This!</a> 👇"""

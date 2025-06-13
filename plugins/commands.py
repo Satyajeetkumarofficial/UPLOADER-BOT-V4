@@ -12,7 +12,6 @@ from pyrogram.errors import MessageNotModified
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, CallbackQuery, ForceReply
 from plugins.config import Config
 from plugins.script import Translation
-from pyrogram import Client, filters
 from plugins.database.add import AddUser
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from plugins.database.database import db

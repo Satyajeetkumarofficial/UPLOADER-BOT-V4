@@ -19,33 +19,32 @@ from plugins.functions.ran_text import random_char
 cookies_file = 'cookies.txt'
 # 🔐 यूजर लॉक और रीयल-टाइम वेट सिस्टम
 from datetime import datetime, timedelta
-from plugins.config import Config
+from plugins.config import Config  # अगर पहले से है तो दोबारा मत जोड़ें
 
+# 👇 User lock dictionary
 user_locks = {}
 user_lock_timers = {}
 
 async def check_user_limit(update):
     user_id = update.from_user.id
 
-    # 👑 ओनर के लिए कोई वेट नहीं
-    if user_id == Config.OWNER_ID:
+    # ✅ Owner या Sudo User को allow करो बिना wait
+    if user_id == Config.OWNER_ID or user_id in Config.SUDO_USERS:
         return True
 
     now = datetime.utcnow()
 
-    # 🔒 यदि यूजर पहले से लॉक है
     if user_locks.get(user_id, False):
         wait_until = user_lock_timers.get(user_id, now)
         remaining = (wait_until - now).total_seconds()
 
         if remaining > 0:
-            # 🕒 रीयल-टाइम वेट मैसेज भेजें और अपडेट करें
             msg = await update.message.reply_text(
                 f"⏳ कृपया प्रतीक्षा करें...\n⌛ बचा समय: **{int(remaining)} सेकंड**"
             )
 
             while remaining > 0:
-                await asyncio.sleep(5)  # हर 5 सेकंड में अपडेट करें
+                await asyncio.sleep(5)
                 now = datetime.utcnow()
                 remaining = (wait_until - now).total_seconds()
                 if remaining <= 0:
@@ -64,7 +63,7 @@ async def check_user_limit(update):
 
             return False
 
-    # ✅ यूजर को लॉक करें और 5 मिनट (300 सेकंड) की सीमा तय करें
+    # ✅ Lock set karo
     user_locks[user_id] = True
     user_lock_timers[user_id] = now + timedelta(seconds=300)
     return True

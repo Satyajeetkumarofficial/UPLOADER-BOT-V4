@@ -32,7 +32,7 @@ async def check_user_limit(update):
         return False
 
     user_locks[user_id] = True
-    await asyncio.sleep(10)  # Normal users ke liye 10 second delay
+    await asyncio.sleep(30)  # Normal users ke liye 10 second delay
     return True
 
 def release_user_lock(user_id):

@@ -1,5 +1,6 @@
 import os
 from os import environ, getenv
+from datetime import datetime
 import logging
 
 logging.basicConfig(
@@ -43,8 +44,8 @@ class Config(object):
     BOT_USERNAME = os.environ.get("BOT_USERNAME", "")
     ADL_BOT_RQ = {}
 
-# plugins/config.py ke andar
-    SUDO_USERS = set()  # initially empty
+# 👑 SUDO_USERS: dict = {user_id: expiry_datetime}
+    SUDO_USERS = {}
 
 # Set False off else True
     TRUE_OR_FALSE = os.environ.get("TRUE_OR_FALSE", "").lower() == "true"

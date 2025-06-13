@@ -17,7 +17,62 @@ from plugins.database.database import db
 from PIL import Image
 from plugins.functions.ran_text import random_char
 cookies_file = 'cookies.txt'
-# Set up logging
+# 🔐 यूजर लॉक और रीयल-टाइम वेट सिस्टम
+from datetime import datetime, timedelta
+from plugins.config import Config
+
+user_locks = {}
+user_lock_timers = {}
+
+async def check_user_limit(update):
+    user_id = update.from_user.id
+
+    # 👑 ओनर के लिए कोई वेट नहीं
+    if user_id == Config.OWNER_ID:
+        return True
+
+    now = datetime.utcnow()
+
+    # 🔒 यदि यूजर पहले से लॉक है
+    if user_locks.get(user_id, False):
+        wait_until = user_lock_timers.get(user_id, now)
+        remaining = (wait_until - now).total_seconds()
+
+        if remaining > 0:
+            # 🕒 रीयल-टाइम वेट मैसेज भेजें और अपडेट करें
+            msg = await update.message.reply_text(
+                f"⏳ कृपया प्रतीक्षा करें...\n⌛ बचा समय: **{int(remaining)} सेकंड**"
+            )
+
+            while remaining > 0:
+                await asyncio.sleep(5)  # हर 5 सेकंड में अपडेट करें
+                now = datetime.utcnow()
+                remaining = (wait_until - now).total_seconds()
+                if remaining <= 0:
+                    break
+                try:
+                    await msg.edit_text(
+                        f"⏳ कृपया प्रतीक्षा करें...\n⌛ बचा समय: **{int(remaining)} सेकंड**"
+                    )
+                except:
+                    pass
+
+            try:
+                await msg.edit_text("✅ अब आप अगला लिंक भेज सकते हैं।")
+            except:
+                pass
+
+            return False
+
+    # ✅ यूजर को लॉक करें और 5 मिनट (300 सेकंड) की सीमा तय करें
+    user_locks[user_id] = True
+    user_lock_timers[user_id] = now + timedelta(seconds=300)
+    return True
+  # 🔓 जब काम पूरा हो जाए तो लॉक हटाएं
+def release_user_lock(user_id):
+    user_locks[user_id] = False
+    user_lock_timers.pop(user_id, None)
+  # Set up logging
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)

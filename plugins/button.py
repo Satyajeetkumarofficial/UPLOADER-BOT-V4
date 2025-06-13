@@ -11,6 +11,7 @@ from plugins.config import Config
 from plugins.script import Translation
 from plugins.thumbnail import Gthumb01, Gthumb02 # Assuming these are functions, not just a module
 from plugins.functions.display_progress import progress_for_pyrogram, humanbytes
+from plugins.functions.metadata import Mdata01, Mdata02, Mdata03
 from plugins.database.database import db
 from PIL import Image
 from plugins.functions.ran_text import random_char

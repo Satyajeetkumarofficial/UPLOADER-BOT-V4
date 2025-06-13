@@ -34,8 +34,8 @@ Usᴇ ʜᴇʟᴘ ʙᴜᴛᴛᴏɴ ᴛᴏ ᴋɴᴏᴡ ʜᴏᴡ ᴛᴏ ᴜsᴇ ᴍ
 ├📢 **Fʀᴀᴍᴇᴡᴏʀᴋ** : <a href=https://docs.pyrogram.org/>PʏʀᴏBʟᴀᴄᴋ 2.6.8</a>
 ├💮 **Lᴀɴɢᴜᴀɢᴇ** : <a href=https://www.python.org>Pʏᴛʜᴏɴ 3.13.2</a>
 ├💾 **Dᴀᴛᴀʙᴀsᴇ** : <a href=https://cloud.mongodb.com>MᴏɴɢᴏDB</a>
-├🚨 **Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ** : <a href=https://t.me/ProBotsDiscussionsGroup>sᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ</a>
-├🥏 **Cʜᴀɴɴᴇʟ** : <a href=https://t.me/ProBotUpdate>ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ</a>
+├🚨 **Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ** : <a href=https://t.me/ProBotsDiscussionsGroup>ᴊᴏɪɴ ɢʀᴏᴜᴘ</a>
+├🥏 **Cʜᴀɴɴᴇʟ** : <a href=https://t.me/ProBotUpdate>ᴘʀᴏ ʙᴏᴛs</a>
 ├👨‍💻 **Cʀᴇᴀᴛᴇʀ** :  @ProBotUpdate
 ╰───────────────⍟
 """

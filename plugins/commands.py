@@ -149,53 +149,7 @@ def parse_time(input_time: str) -> datetime:
     else:
         return now + timedelta(days=365)  # default 1 year
 
-@Client.on_message(filters.command("addsudo") & filters.user(Config.OWNER_ID))
-async def add_sudo_user(client, message):
-    if len(message.command) < 2:
-        return await message.reply_text("👤 कृपया User ID दें\nउदाहरण: `/addsudo 123456789 1m`")
-
-    try:
-        user_id = int(message.command[1])
-        if len(message.command) >= 3:
-            time_input = message.command[2]  # Example: 1d / 1m / 1y
-            expiry = parse_time(time_input)
-        else:
-            expiry = parse_time("1d")  # default 1 year
-
-        Config.SUDO_USERS[user_id] = expiry
-        await message.reply_text(f"✅ User `{user_id}` को SUDO में जोड़ा गया है, समाप्ति: {expiry.strftime('%Y-%m-%d %H:%M:%S')} UTC")
-    except Exception as e:
-        await message.reply_text(f"❌ Error: {e}")
-
-
-@Client.on_message(filters.command("removesudo") & filters.user(Config.OWNER_ID))
-async def remove_sudo_user(client, message):
-    if len(message.command) < 2:
-        return await message.reply_text("👤 कृपया User ID दें।\nउदाहरण: `/removesudo 123456789`")
-    
-    try:
-        user_id = int(message.command[1])
-        del Config.SUDO_USERS[user_id]
-        await message.reply_text(f"❎ User `{user_id}` को SUDO से हटा दिया गया।")
-    except KeyError:
-        await message.reply_text("❌ यह User पहले से SUDO में नहीं है।")
-    except Exception as e:
-        await message.reply_text(f"❌ Error: {e}")
-
-@Client.on_message(filters.command("sudolist") & filters.user(Config.OWNER_ID))
-async def list_sudo_users(client, message):
-    if not Config.SUDO_USERS:
-        return await message.reply_text("📭 कोई भी SUDO user नहीं है।")
-
-    sudo_list = ""
-    for uid, expiry in Config.SUDO_USERS.items():
-        time_left = expiry - datetime.utcnow()
-        sudo_list += f"• `{uid}` ⏳ वैध: {expiry.strftime('%Y-%m-%d')} ({time_left.days} दिन बाकी)\n"
-
-    await message.reply_text(f"👑 SUDO USERS:\n\n{sudo_list}")
-        
-
-@Client.on_message(filters.command("warn"))
+ @Client.on_message(filters.command("warn"))
 async def warn(c, m):
     if m.from_user.id in Config.OWNER_II:
         if len(m.command) >= 3:

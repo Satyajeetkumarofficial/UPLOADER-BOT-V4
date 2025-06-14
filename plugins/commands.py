@@ -149,7 +149,8 @@ def parse_time(input_time: str) -> datetime:
     else:
         return now + timedelta(days=365)  # default 1 year
 
- @Client.on_message(filters.command("warn"))
+
+@Client.on_message(filters.command("warn"))
 async def warn(c, m):
     if m.from_user.id in Config.OWNER_II:
         if len(m.command) >= 3:
